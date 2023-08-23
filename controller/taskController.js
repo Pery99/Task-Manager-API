@@ -1,13 +1,14 @@
-
+const Tasks = require('../Models/task')
 const getAllTask = (req, res) => {
     res.status(200).json({ status: true })
 }
 
-const addTask = (req, res) => {
-    res.status(200).json({ status: true, data: req.body });
+const addTask = async (req, res) => {
+    const tasks = await Tasks.create(req.body)
+    res.status(201).json({ status: true, tasks });
 }
 
-const getSingleTask = (req, res) => {
+const getSingleTask = (req, res) => { 
     res.status(200).json({ status: true, id: req.params.id })
 }
 
