@@ -6,7 +6,7 @@ const {
     addTask,
     updateTask,
     deleteTask,
-} = require('../controller/taskController')
+} = require('../controller/tasks')
 
 
 
