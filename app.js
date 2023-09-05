@@ -3,14 +3,17 @@ const app = express();
 const TaskRouter = require('./Router/TaskRouter')
 const connectDB = require('./db/connect')
 require('dotenv').config();
+const notFound = require('./Middleware/not-found')
+const errorHandlerMiddleware = require('./Middleware/errorHandler')
 
 //Middleware
 app.use(express.json());
+
+//Routes
 app.use('/api/v1/tasks', TaskRouter);
 
-app.get('*', (req, res) => {
-    res.status(404).send(`Sorry the url '${req.url}' is not available`)
-})
+app.use(notFound)
+app.use(errorHandlerMiddleware)
 
 const port = 3000;
 const start = async () => {
